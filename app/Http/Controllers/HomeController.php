@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class HomeController extends Controller
 {
@@ -25,6 +26,9 @@ class HomeController extends Controller
     {
         return view('user.home');
     }
+    public function joblisting(){
+        return view('job-listing');
+    }
     public function message()
     {
         return view('company.message');
@@ -40,6 +44,30 @@ class HomeController extends Controller
     public function candidateearnings()
     {
         return view('user.candidate-earnings');
+    }
+
+    public function projectdetail()
+    {
+        return view('projectdetail');
+    }
+
+    public function viewalljobs()
+    {
+        $input = request()->all();
+        $name = $input['name'];
+        $prjctlocation = $input['prjctlocation'];
+        $filter = "";
+
+        $query = DB::table('projects')->join('countries', 'projects.countryId', '=', 'countries.id');
+        if($prjctlocation){
+            $query->where('projects.location', 'LIKE', '%'. $prjctlocation .'%');
+        }else if($name){
+            $query->where('projects.title', 'LIKE', '%'. $name .'%');
+        }
+        $query->select('projects.title','projects.location AS prjctlocation','projects.minRate','projects.maxRate','projects.created_at','projects.filename', 'countries.name AS countryname');
+        $result = $query->get();
+
+        return response()->json(['data'=>$result]);
     }
     
 }

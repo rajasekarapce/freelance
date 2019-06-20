@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use DB;
 class CompanyDetails extends Controller
 {
     public function __construct()
@@ -12,7 +12,7 @@ class CompanyDetails extends Controller
     }
     public function index()
     {
-        return view('company.post-job');
+       return view('company.post-job');
     }
     public function transaction()
     {

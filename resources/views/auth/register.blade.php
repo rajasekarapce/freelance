@@ -18,9 +18,9 @@
                   <div class="col-md-12">
                      <div class="breadcromb-box-pagin">
                         <ul>
-                           <li><a href="#">home</a></li>
+                           <li><a href="/">home</a></li>
                            <li><a href="#">pages</a></li>
-                           <li class="active-breadcromb"><a href="#">Register</a></li>
+                           <li class="active-breadcromb"><a href="/register">Register</a></li>
                         </ul>
                      </div>
                   </div>
@@ -43,6 +43,17 @@
                      <form method="POST" action="{{ route('register') }}">
                         @csrf
 
+                        <div class="">
+                           <input type="radio" id="selectuser1" name="selectuser" value="1">
+                           <label for="selectuser1">I want to Hire</label>&nbsp;
+                           <input type="radio" id="selectuser2" name="selectuser" value="2">
+                           <label for="selectuser2">I want to Work</label>
+							@if ($errors->has('name'))
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $errors->first('name') }}</strong>
+								</span>
+							@endif
+                        </div>
                         <div class="single-login-field">
                            <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" placeholder="Full Name" required autofocus>
 							@if ($errors->has('name'))

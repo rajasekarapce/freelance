@@ -43,87 +43,107 @@
                         <div class="manage-jobs-heading">
                            <h3>Post A new job</h3>
                         </div>
+                        
+                        @if ($message = Session::get('success'))
+                           <div class="alert alert-success">
+                                 <p>{{ $message }}</p>
+                           </div>
+                        @endif
                         <div class="new-job-submission">
-                           <form>
+                           <!--<form method="post" action="{{ route('post-job') }}">-->
+                           <form method="POST" action="{{ route('post-job') }}">
+                           @csrf
+                           <input type="hidden" name="userID" value="{{ Auth::user()->id }}">
                               <div class="resume-box">
                                  <div class="single-resume-feild feild-flex-2">
                                     <div class="single-input">
                                        <label for="j_title">Job Title:</label>
-                                       <input type="text" id="j_title">
+                                       <input type="text" id="j_title" name="title">
                                     </div>
                                     <div class="single-input">
-                                       <label for="Location">Location:</label>
-                                       <input type="text" placeholder="e.g. London" id="Location">
+                                       <label for="j_reg">Job Region:</label>
+                                       <select id="j_reg" name="countryId">
+                                          <option value='0'>Select Region</option>
+                                          <?php foreach($Country as $region){ ?>
+                                             <option value="<?php echo $region->id; ?>"><?php echo $region->name; ?></option>
+                                          <?php } ?>
+                                       </select>
                                     </div>
                                  </div>
                                  <div class="single-resume-feild feild-flex-2">
                                     <div class="single-input">
-                                       <label for="j_reg">Job Region:</label>
-                                       <select id="j_reg">
-                                          <option value=''>Select Region</option>
-                                          <option value="1">Los Angeles</option>
-                                          <option value="2">Miami</option>
-                                          <option value="3">New York</option>
-                                          <option value="4">San Francisco</option>
-                                       </select>
+                                       <label for="Location">Location:</label>
+                                       <input type="text" placeholder="e.g. London" id="Location" name="location">
                                     </div>
                                     <div class="single-input">
                                        <label for="j_type">Job Type:</label>
-                                       <select id="j_type">
-                                          <option value=''>Select Region</option>
-                                          <option value="1">Full TIme</option>
-                                          <option value="2">Freelance</option>
-                                          <option value="3">Part Time</option>
-                                          <option value="4">Internship</option>
+                                       <select id="j_type" name="jobtypeId">
+                                       <option value='0'>Select Job Type</option>
+                                          <?php foreach($JobType as $jtype){ ?>
+                                             <option value="<?php echo $jtype->id; ?>"><?php echo $jtype->name; ?></option>
+                                          <?php } ?>
                                        </select>
                                     </div>
                                  </div>
                                  <div class="single-resume-feild feild-flex-2">
                                     <div class="single-input">
                                        <label for="j_category">Job Category:</label>
-                                       <select id="j_category">
-                                          <option value="122">Accounting / Finance</option>
-                                          <option value="124">Automotive Jobs</option>
-                                          <option value="132">Construction / Facilities</option>
-                                          <option value="137">Design, Art & Multimedia</option>
-                                          <option value="172">Adobe Photoshop</option>
-                                          <option value="173">Animation</option>
-                                          <option value="145">Graphic Design</option>
-                                          <option value="147">Illustration</option>
-                                          <option value="150">Logo Design</option>
-                                          <option value="168">Video</option>
-                                          <option value="140">Education Training</option>
-                                          <option value="146">Healthcare</option>
-                                          <option value="157">Restaurant / Food Service</option>
-                                          <option value="159">Sales / Marketing</option>
-                                          <option value="175">Display Advertising</option>
-                                          <option value="176">Email Marketing</option>
-                                          <option value="177">Lead Generation</option>
-                                          <option value="179">Marketing Strategy</option>
-                                          <option value="180">Public Relations</option>
-                                          <option value="165">Telecommunications</option>
-                                          <option value="167">Transportation / Logistics</option>
+                                       <select id="j_category" name="categoryId">
+                                       <option value="0">Select Category</option>
+                                          <?php foreach($category as $catg){ ?>
+                                             <option value="<?php echo $catg->id; ?>"><?php echo $catg->name; ?></option>
+                                          <?php } ?>
                                        </select>
                                     </div>
                                     <div class="single-input">
-                                       <label for="External">External "Apply for Job" link : <span>(optional)</span></label>
-                                       <input type="text" placeholder="http://" id="External">
+                                       <label for="External">External Link : <span>(optional)</span></label>
+                                       <input type="text" placeholder="http://" id="External" name="externalLink">
+                                    </div>
+                                 </div>
+                                 <div class="single-resume-feild">
+                                    <div class="single-input">
+                                       <label for="j_desc">What's your budget? (higher budgets attract more quotes)</label>
+                                       <select id="budgetstype" name="budgetType" onchange="budget_Type();">
+                                          <option value="0">Select Category</option>
+                                          <option value="1">Fixed Price</option>
+                                          <option value="2">Hourly</option>
+                                       </select>
+                                    </div>
+                                 </div>
+                                 <div class="single-resume-feild feild-flex-2 hourstype" style="display:none;">
+                                    <div class="single-input">
+                                       <label for="duration">Job Duration:</label>
+                                       <select id="duration" name="jobdurationId">
+                                       <option value="0">Select Duration</option>
+                                       <?php foreach($jobduration as $jobdur){ ?>
+                                             <option value="<?php echo $jobdur->id; ?>"><?php echo $jobdur->name; ?></option>
+                                          <?php } ?>
+                                       </select>
+                                    </div>
+                                    <div class="single-input">
+                                    <label for="hours">Hours Per Week:</label>
+                                       <select id="hours" name="hoursperweekId">
+                                       <option value="0">Select Hours</option>
+                                          <?php foreach($hoursperweek as $hours){ ?>
+                                             <option value="<?php echo $hours->id; ?>"><?php echo $hours->name; ?></option>
+                                          <?php } ?>
+                                       </select>
                                     </div>
                                  </div>
                                  <div class="single-resume-feild feild-flex-2">
                                     <div class="single-input">
-                                       <label for="mn_salary">Minimum Salary ($):</label>
-                                       <input type="text" placeholder="e.g. 20000" id="mn_salary">
+                                       <label for="mn_salary">Minimum Rate ($):</label>
+                                       <input type="text" placeholder="e.g. 20000" id="mn_salary" name="minRate">
                                     </div>
                                     <div class="single-input">
-                                       <label for="mx_salary">Maximum Salary ($):</label>
-                                       <input type="text" placeholder="e.g. 50000" id="mx_salary">
+                                       <label for="mx_salary">Maximum Rate ($):</label>
+                                       <input type="text" placeholder="e.g. 50000" id="mx_salary" name="maxRate">
                                     </div>
                                  </div>
                                  <div class="single-resume-feild">
                                     <div class="single-input">
                                        <label for="j_desc">Job Description:</label>
-                                       <textarea id="j_desc"></textarea>
+                                       <textarea id="j_desc" name="jobDescription"></textarea>
                                     </div>
                                  </div>
                                  <div class="single-resume-feild upload_file">
@@ -132,13 +152,13 @@
                                           <i class="fa fa-upload"></i>
                                           Upload Files
                                        </p>
-                                       <input type="file" id="w_screen">
+                                       <input type="file" id="w_screen" name="filename">
                                     </div>
                                     <p>Images or documents that might be helpful in describing your job</p>
                                  </div>
                               </div>
                               <div class="single-input submit-resume">
-                                 <button type="submit">Post Job</button>
+                                 <button type="submit" name="submit">Post Job</button>
                               </div>
                            </form>
                         </div>
@@ -150,3 +170,17 @@
       <!-- Candidate Dashboard Area End -->
        
     @include('layouts.footer')
+
+    <script>
+      function budget_Type(){
+         var budgetstype = $('#budgetstype').val();
+         if(budgetstype == 2){
+            $('.hourstype').show();
+         }else{
+            $('.hourstype').hide();
+            $('#duration').val('');
+            $('#hours').val('');
+         }
+         
+      }
+    </script>

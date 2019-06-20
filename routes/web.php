@@ -15,6 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/job-listing', 'HomeController@joblisting')->name('joblisting');
+Route::get('/projectdetail', 'HomeController@projectdetail')->name('projectdetail');
+
+
+Route::get('viewalljobs', 'HomeController@viewalljobs');
+Route::post('viewalljobs', 'HomeController@viewalljobs');
+
 Auth::routes();
 
 //User Routes
@@ -27,6 +34,8 @@ Route::get('/candidate-earnings', 'HomeController@candidateearnings')->name('can
 
 //Company Routes
 Route::get('/post-job', 'PostJob@index')->name('post-job');
-Route::get('/company', 'CompanyDetails@index')->name('company');
+Route::get('/company', 'PostJob@index')->name('company');
 Route::get('/transaction', 'CompanyDetails@transaction')->name('company');
 Route::get('/manage-candidates', 'CompanyDetails@managecandidates')->name('company');
+
+Route::post('/post-job', 'PostJob@StoreJob')->name('post-job.StoreJob');
