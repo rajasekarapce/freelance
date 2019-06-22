@@ -151,28 +151,20 @@
                       
                      <!-- Single Job Sidebar Start -->
                      <div class="single-job-sidebar sidebar-type">
-                        <h3>job type</h3>
+                        <h3>Budget Type</h3>
                         <div class="job-sidebar-box">
                            <ul>
-                              <li class="checkbox">
-                                 <input class="checkbox-spin" type="checkbox" id="Freelance" />
-                                 <label for="Freelance"><span></span>Freelance</label>
+                              <li class="radio">
+                                 <input class="radio-spin" type="radio" id="all" name="budget" value="0" onclick="listingjobs();"/>
+                                 <label for="all"><span></span>All Job</label>
                               </li>
-                              <li class="checkbox">
-                                 <input class="checkbox-spin" type="checkbox" id="Full_Time" />
-                                 <label for="Full_Time"><span></span>Full Time</label>
+                              <li class="radio">
+                                 <input class="radio-spin" type="radio" id="hourly" name="budget" value="2" onclick="listingjobs();"/>
+                                 <label for="hourly"><span></span>Hourly</label>
                               </li>
-                              <li class="checkbox">
-                                 <input class="checkbox-spin" type="checkbox" id="Internship" />
-                                 <label for="Internship"><span></span>Internship</label>
-                              </li>
-                              <li class="checkbox">
-                                 <input class="checkbox-spin" type="checkbox" id="Part_Time" />
-                                 <label for="Part_Time"><span></span>Part Time</label>
-                              </li>
-                              <li class="checkbox">
-                                 <input class="checkbox-spin" type="checkbox" id="Temporary" />
-                                 <label for="Temporary"><span></span>Temporary</label>
+                              <li class="radio">
+                                 <input class="radio-spin" type="radio" id="fixed" name="budget" value="1" onclick="listingjobs();"/>
+                                 <label for="fixed"><span></span>Fixed Price</label>
                               </li>
                            </ul>
                         </div>
@@ -290,6 +282,11 @@
       <script src="assets/js/main.js"></script>
 	  <script>
 			function listingjobs(){
+            var budget=$("input:radio[name=budget]:checked").val();
+            if(budget == undefined){
+               budget=0;
+            }
+               
 				$.ajaxSetup({
 					headers: {
 					  'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
@@ -300,7 +297,8 @@
 					method: 'get',
 					data: {
 						name: $('#searchname').val(),
-						prjctlocation: $('#prjctlocation').val()
+                  prjctlocation: $('#prjctlocation').val(),
+                  budgettype: budget
 						//price: jQuery('#price').val()
 					},
 					success: function(result){
@@ -316,7 +314,7 @@
 										disp +="<p class='varify'><i class='fa fa-check'></i>Fixed price : $"+result.data[j].minRate+"-$"+result.data[j].maxRate+"</p>";
 										disp +="<p class='rating-company'>4.2</p>";
 								disp +="</div>";
-								disp +="<div class='company-list-btn'><a href='JavaScript:void(0);' class='jobguru-btn'>bid now</a></div>";
+								disp +="<div class='company-list-btn'><a href='\projectdetail' class='jobguru-btn'>bid now</a></div>";
 							disp +="</div></div>";
 						}
 						$('#dispjobslisting').html(disp);

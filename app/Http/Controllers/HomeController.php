@@ -56,13 +56,19 @@ class HomeController extends Controller
         $input = request()->all();
         $name = $input['name'];
         $prjctlocation = $input['prjctlocation'];
+        $budget = $input['budgettype'];
+
         $filter = "";
 
         $query = DB::table('projects')->join('countries', 'projects.countryId', '=', 'countries.id');
         if($prjctlocation){
             $query->where('projects.location', 'LIKE', '%'. $prjctlocation .'%');
-        }else if($name){
+        }
+        if($name){
             $query->where('projects.title', 'LIKE', '%'. $name .'%');
+        }
+        if(1 <= $budget){
+            $query->where('projects.budgetType', $budget);
         }
         $query->select('projects.title','projects.location AS prjctlocation','projects.minRate','projects.maxRate','projects.created_at','projects.filename', 'countries.name AS countryname');
         $result = $query->get();
