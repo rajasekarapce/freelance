@@ -8,7 +8,7 @@ class CompanyDetails extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
     public function index()
     {
@@ -21,5 +21,9 @@ class CompanyDetails extends Controller
     public function managecandidates()
     {
         return view('company.manage-candidates');
+    }
+    public function companylist()
+    {
+        return view('browse-companies');
     }
 }

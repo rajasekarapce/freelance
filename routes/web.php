@@ -35,7 +35,8 @@ Route::get('/candidate-earnings', 'HomeController@candidateearnings')->name('can
 //Company Routes
 Route::get('/post-job', 'PostJob@index')->name('post-job');
 Route::get('/company', 'PostJob@index')->name('company');
-Route::get('/transaction', 'CompanyDetails@transaction')->name('company');
-Route::get('/manage-candidates', 'CompanyDetails@managecandidates')->name('company');
+Route::get('/transaction', 'CompanyDetails@transaction')->name('transaction');
+Route::get('/manage-candidates', 'CompanyDetails@managecandidates')->name('manage-candidates');
+Route::get('/browse-companies', 'CompanyDetails@companylist')->name('companylist');
 
 Route::post('/post-job', 'PostJob@StoreJob')->name('post-job.StoreJob');

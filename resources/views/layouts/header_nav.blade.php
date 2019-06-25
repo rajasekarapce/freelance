@@ -18,19 +18,13 @@
                      <div class="header-menu">
                         <nav id="navigation">
                            <ul id="jobguru_navigation">
-                              <li class="active has-children">
-                                 <a href="#">home</a>
-                                 <ul>
-                                    <li><a href="/">Home 1</a></li>
-                                    <li><a href="index-2.html">Home 2</a></li>
-                                 </ul>
-                              </li>
+                              <li><a href="/">Home</a></li>
                               <li class=" has-children">
                                  <a href="#">for candidates</a>
                                  <ul>
                                     <li><a href="/job-listing">browse jobs</a></li>
                                     <li><a href="browse-categories.html">Browse Categories</a></li>
-                                    <li><a href="browse-companies.html">browse companies</a></li>
+                                    <li><a href="browse-companies">browse companies</a></li>
                                     <li><a href="single-candidates.html">candidates details</a></li>
                                     <li><a href="submit-resume.html">submit resume</a></li>
                                     <li class="has-inner-child">
