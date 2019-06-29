@@ -5486,5 +5486,45 @@ ul.company-desc-list li i {
 }
 
 .contact-right form .row:last-child .single-contact-field {
-	margin-bottom: 0
+	margin-bottom: 0 
+}
+
+/***************************************************************/
+					/*New Custom*/
+/***************************************************************/
+
+.job_dtl_top_sec{
+	padding-bottom: 20px !important;
+    padding-top: 40px !important;
+}
+
+ul.bidding_list{
+	max-height:300px;
+	overflow:scroll;
+	overflow-x:hidden;
+	background:#FFF;
+}
+
+.new_scroll {
+    margin:50px auto 0;
+    padding:0 14px;
+    overflow:auto;
+}
+
+.new_scroll::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+.new_scroll::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+ 
+.new_scroll::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgb(37, 173, 96); 
+}
+
+.new_scroll::-webkit-scrollbar-thumb:hover {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.8);
 }

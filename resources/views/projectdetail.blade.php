@@ -9,7 +9,7 @@
       <meta name="author" content="Themescare">
 	  <meta name="_token" content="{{ csrf_token() }}">
       <!-- Title -->
-      <title>jobguru</title>
+      <title>jobguru</title> 
       <!-- Favicon -->
       <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32x32.png">
       <!--Bootstrap css-->
@@ -56,8 +56,9 @@
                      <div class="single-candidate-box-right">
                         <h4>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean </h4>
                         <div class="job-details-meta">
-                           <p><i class="fa fa-file-text"></i> <small>No.Of Bids</small> 1</p>
+                           <p><i class="fa fa-gavel"></i> <small>No.Of Bids</small> 1</p>
                            <p><i class="fa fa-calendar"></i> <small>Post Date</small> 16-Jun-19</p>
+						   <p><i class="fa fa-briefcase"></i> <small>Project ID</small> 852369</p>
                         </div>
                      </div>
                   </div>
@@ -97,12 +98,12 @@
                            <li><i class="fa fa-check"></i>Experience in video production a plus or, at a minimum, a willingness to learn</li>
                         </ul>
                      </div>
-                     <div class="single-candidate-widget clearfix">
+                     <!--<div class="single-candidate-widget clearfix">
                         <h3>Challenges & Benifits</h3>
                         <p>Etiam quis interdum felis, at pellentesque metus. Morbi eget congue lectus. Donec eleifend ultricies urna et euismod. Sed consectetur tellus eget odio aliquet, vel vestibulum tellus sollicitudin. Morbi maximus metus eu eros tincidunt, vitae mollis ante imperdiet. Nulla imperdiet at mauris ut posuere.</p>
                         <p>Donec accumsan auctor iaculis. Nullam non tortor massa. Proin ligula leo, hendrerit quis tincidunt a, sodales eget ligula. Aenean et est tristique, dictum lorem vel, porttitor urna.</p>
                         <p>Suspendisse gravida elementum lacus, a malesuada tortor sollicitudin ut. Donec pharetra metus lectus, ut eleifend eros sollicitudin et. Ut at lobortis dolor, eget commodo tortor. Curabitur bibendum consequat neque a tincidunt. In in euismod quam. Proin in egestas eros. Cum sociis </p>
-                     </div>
+                     </div>-->
                      <div class="single-candidate-widget clearfix">
                         <h3>share this post</h3>
                         <ul class="share-job">
@@ -166,7 +167,7 @@
 					 <div class="chat-list-left">
                                 
                               <div class="chat-list-body">
-                                 <ul class="chat-list bidding_list">
+                                 <ul class="chat-list bidding_list new_scroll">
                                     <li class="clearfix">
                                        <a href="#">
                                           <div class="chat-avatar-img">
@@ -201,7 +202,7 @@
                                              <span class="rating-company">4.2</span>
                                           </div>
                                        </a>
-                                    </li>
+                                    </li>  
                                     <!-- end list -->
                                     <li class="clearfix">
                                        <a href="#">
